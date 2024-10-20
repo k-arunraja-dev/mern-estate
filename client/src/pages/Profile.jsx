@@ -17,6 +17,7 @@ import {
   signOutUserStart,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 
 //firebase storage
 //allow read;
@@ -122,7 +123,7 @@ export default function Profile() {
   }
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      <h1 className='text-3xl font-semibold text-center my-5'>Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input 
           onChange={(e)=>setFile(e.target.files[0])} 
@@ -134,7 +135,7 @@ export default function Profile() {
           onClick={()=>fileRef.current.click()} 
           src={formData.avatar || currentUser.avatar} 
           alt="profile" 
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
+          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center" 
         />
         <p className="text-sm self-center">
           {fileUploadError ? ( 
@@ -176,6 +177,9 @@ export default function Profile() {
         >
           {loading ? 'loading...' : 'Update'}
         </button>
+        <Link className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95' to={"/create-listing"}>
+        Create Listing
+        </Link>
       </form>
       <div className="flex justify-between mt-5">
         <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">Delete account</span>
